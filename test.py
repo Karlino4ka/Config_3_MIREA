@@ -5,11 +5,9 @@ from main import ConfigParser
 
 class TestConfigParser(unittest.TestCase):
     def setUp(self):
-        """Инициализация парсера для тестов."""
         self.parser = ConfigParser()
 
     def test_parse_constant(self):
-        """Тестирование парсинга констант."""
         text = """
         x <- 125;
         y <- $x 10 +$;
@@ -19,7 +17,6 @@ class TestConfigParser(unittest.TestCase):
         self.assertEqual(self.parser.constants["y"], 135)
 
     def test_parse_struct_simple(self):
-        """Тестирование простой структуры."""
         text = """
         struct myStruct {
             a = 15,
@@ -32,7 +29,6 @@ class TestConfigParser(unittest.TestCase):
         self.assertEqual(result["myStruct"]["b"], "value")
 
     def test_parse_struct_with_expression(self):
-        """Тестирование структуры с выражениями."""
         text = """
         x <- 10;
         struct myStruct {
@@ -50,7 +46,6 @@ class TestConfigParser(unittest.TestCase):
 
 
     def test_invalid_struct_declaration(self):
-        """Тестирование некорректного объявления структуры."""
         text = """
         struct myStruct {
             a = 15,
@@ -64,7 +59,6 @@ class TestConfigParser(unittest.TestCase):
 
 
     def test_ignore_comments(self):
-        """Тестирование игнорирования комментариев."""
         text = """
         *> Это комментарий
         x <- 10;
